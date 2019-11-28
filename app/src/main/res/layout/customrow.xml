@@ -13,6 +13,7 @@
 
 
 <androidx.cardview.widget.CardView
+    android:id="@+id/newcard"
     app:cardCornerRadius="10dp"
     android:layout_margin="10dp"
     app:cardElevation="@dimen/cardview_default_radius"

@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
@@ -19,6 +21,7 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
 
     private Context context;
     private ArrayList<UserData> myaaraylist;
+
 
     public UserDataAdpater(Context context, ArrayList<UserData> myaaraylist) {
         this.context = context;
@@ -49,14 +52,25 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
     UserData mydata = myaaraylist.get(position);
     holder.name.setText(mydata.getName());
     holder.salary.setText(mydata.getSalary());
 
 
+        holder.mycardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context,"position = "+position,Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
+
+
+
+
 
     @Override
     public int getItemCount() {
@@ -66,15 +80,18 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView name, salary;
+        CardView mycardview;
 
         public ViewHolder(@NonNull View itemView) {
 
 
             super(itemView);
 
-
+            mycardview = itemView.findViewById(R.id.newcard);
             name = (TextView)itemView.findViewById(R.id.textView2);
             salary = (TextView)itemView.findViewById(R.id.textView3);
         }
     }
+
+
 }

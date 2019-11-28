@@ -1,18 +1,21 @@
 package com.example.recyclerexample;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView myrecycler;
+    CardView mycardview;
     ArrayList<UserData> myarraylist = new ArrayList<UserData>();
 
     @Override
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager mylinearlayout = new LinearLayoutManager(this);
         myrecycler.setLayoutManager(mylinearlayout);
         myrecycler.setAdapter(myadapter);
+
+
 
 
 
