@@ -53,9 +53,24 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
     Employee mydata = myaaraylist.get(position);
+
     Vehicle myvehicle = mydata.getVehicle();
-    holder.name.setText(mydata.getName());
-        holder.salary.setText(myvehicle.getMake());
+    holder.name.setText("Employee Name: "+mydata.getName());
+    holder.id.setText("Employee ID: "+mydata.getId().toString());
+    holder.age.setText("Employee Age: "+mydata.getAge().toString()+" Years");
+
+
+        if(myvehicle == null)
+    {
+        holder.type.setText("No Vehicle");
+    }
+    else {
+        holder.type.setText("Vehicle Type: "+myvehicle.getType());
+            holder.make.setText("Vehicle Make: "+myvehicle.getMake());
+            holder.model.setText("Vehicle Model: "+myvehicle.getModel());
+            holder.plate.setText("Vehicle Plate: "+myvehicle.getPlate());
+
+        }
 
 
 
@@ -79,7 +94,7 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, salary;
+        TextView name, age, id, make, model, plate, type;
         CardView mycardview;
 
         public ViewHolder(@NonNull View itemView) {
@@ -88,8 +103,16 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
             super(itemView);
 
             mycardview = itemView.findViewById(R.id.newcard);
-            name = (TextView)itemView.findViewById(R.id.textView2);
-            salary = (TextView)itemView.findViewById(R.id.textView3);
+            id = (TextView)itemView.findViewById(R.id.textView2);
+            name = (TextView)itemView.findViewById(R.id.textView3);
+            age = (TextView)itemView.findViewById(R.id.textView5);
+            make = (TextView)itemView.findViewById(R.id.textViewn2);
+            model = (TextView)itemView.findViewById(R.id.textViewn3);
+            plate = (TextView)itemView.findViewById(R.id.textViewn4);
+            type = (TextView)itemView.findViewById(R.id.textViewn1);
+
+
+
         }
     }
 
