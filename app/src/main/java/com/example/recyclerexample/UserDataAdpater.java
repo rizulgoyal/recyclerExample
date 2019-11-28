@@ -11,19 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.zip.Inflater;
+import java.util.List;
 
 
 public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHolder> {
 
     private Context context;
-    private ArrayList<UserData> myaaraylist;
+    private List<Employee> myaaraylist;
 
 
-    public UserDataAdpater(Context context, ArrayList<UserData> myaaraylist) {
+    public UserDataAdpater(Context context, List<Employee> myaaraylist) {
         this.context = context;
         this.myaaraylist = myaaraylist;
     }
@@ -36,11 +34,11 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
         this.context = context;
     }
 
-    public ArrayList<UserData> getMyaaraylist() {
+    public List<Employee> getMyaaraylist() {
         return myaaraylist;
     }
 
-    public void setMyaaraylist(ArrayList<UserData> myaaraylist) {
+    public void setMyaaraylist(ArrayList<Employee> myaaraylist) {
         this.myaaraylist = myaaraylist;
     }
 
@@ -54,9 +52,11 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
-    UserData mydata = myaaraylist.get(position);
+    Employee mydata = myaaraylist.get(position);
+    Vehicle myvehicle = mydata.getVehicle();
     holder.name.setText(mydata.getName());
-    holder.salary.setText(mydata.getSalary());
+        holder.salary.setText(myvehicle.getMake());
+
 
 
         holder.mycardview.setOnClickListener(new View.OnClickListener() {
