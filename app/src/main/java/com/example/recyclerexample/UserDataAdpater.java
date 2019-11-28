@@ -1,6 +1,8 @@
 package com.example.recyclerexample;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +51,7 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
         return new ViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
@@ -63,6 +66,14 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
         if(myvehicle == null)
     {
         holder.type.setText("No Vehicle");
+        holder.type.setTextColor(Color.RED);
+        holder.type.setTextSize(20);
+
+        holder.plate.setVisibility(View.GONE);
+        holder.make.setVisibility(View.GONE);
+        holder.model.setVisibility(View.GONE);
+
+
     }
     else {
         holder.type.setText("Vehicle Type: "+myvehicle.getType());
