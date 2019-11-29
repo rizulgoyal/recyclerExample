@@ -28,10 +28,7 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
 
     }
 
-    public void refresh()
-    {
-        notifyDataSetChanged();
-    }
+
 
 
     public Context getContext() {

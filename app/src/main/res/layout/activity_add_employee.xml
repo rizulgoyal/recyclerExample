@@ -7,10 +7,11 @@
     tools:context=".AddEmployeeActivity">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/colormustardlight"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,17 +20,18 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_margin="5dp"
-            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:background="@color/colormustarddark"
             android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:padding="5dp"
             android:text="Please Enter Values to Add Employee"
             android:textColor="@android:color/background_light"
-            android:gravity="center"
-            android:background="@color/colormustarddark">
+            android:textSize="20dp">
 
 
         </TextView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,14 +40,12 @@
             android:orientation="horizontal">
 
 
-
             <TextView
                 android:id="@+id/text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="Enter Employee ID"
-                />
+                android:text="Enter Employee ID" />
 
             <EditText
                 android:id="@+id/editTextEmpID"
@@ -53,9 +53,11 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
-                />
+                android:inputType="number"
+                android:singleLine="true" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,8 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="Enter Employee Name"
-                />
+                android:text="Enter Employee Name" />
 
             <EditText
                 android:id="@+id/editTextEmpName"
@@ -78,7 +79,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
-                />
+                android:singleLine="true" />
 
         </LinearLayout>
 
@@ -95,18 +96,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="Enter Employee Age"
-                />
+                android:text="Enter Employee Age" />
 
             <EditText
                 android:id="@+id/editTextEmpAge"
                 android:layout_width="match_parent"
+
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
-                />
+                android:inputType="number"
+                android:singleLine="true" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,8 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="Enter Vehicle Make"
-                />
+                android:text="Enter Vehicle Make" />
 
             <EditText
                 android:id="@+id/editTextVehicleMake"
@@ -129,9 +131,10 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
-                />
+                android:singleLine="true" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -145,18 +148,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="Enter Vehicle Plate"
-                />
+                android:text="Enter Vehicle Plate" />
 
             <EditText
                 android:id="@+id/editTextVehiclePlate"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="64dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
-                />
+                android:singleLine="true" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -170,8 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="Enter Vehicle Model"
-                />
+                android:text="Enter Vehicle Model" />
 
             <EditText
                 android:id="@+id/editTextVehicleModel"
@@ -179,9 +181,10 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
-                />
+                android:singleLine="true" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -195,8 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="Enter Vehicle Type"
-                />
+                android:text="Enter Vehicle Type" />
 
             <EditText
                 android:id="@+id/editTextVehicleType"
@@ -204,18 +206,19 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
-                />
+                android:singleLine="true" />
 
         </LinearLayout>
+
         <Button
             android:id="@+id/buttonemployee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:background="@color/colormustarddark"
-            android:textColor="@android:color/background_light"
             android:layout_margin="10dp"
-            android:text="Click to Add Employee"></Button>
+            android:background="@color/colormustarddark"
+            android:text="Click to Add Employee"
+            android:textColor="@android:color/background_light"
+            android:textSize="20dp"></Button>
 
 
     </LinearLayout>
