@@ -2,11 +2,15 @@ package com.example.recyclerexample;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -38,8 +42,12 @@ public class AddEmployeeActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
 
         createEmployee();
-        Intent myintent = new Intent(this,MainActivity.class);
-        startActivity(myintent);
+        showDialog(AddEmployeeActivity.this,"Are you sure you want to submit?");
+        finish();
+        //Intent myintent = new Intent(this,MainActivity.class);
+        //startActivity(myintent);
+
+
 
 
 
@@ -61,13 +69,34 @@ public class AddEmployeeActivity extends AppCompatActivity implements View.OnCli
         Employee tempobject = new Employee(empid,empname,empage,tempvehicle);
 
         final UserDatabase uData = UserDatabase.getInstance(this);
-        Gson gson = new Gson();
+        //Gson gson = new Gson();
 
-        Employee emp = gson.toJson(tempobject,Employee.class);
 
         uData.daoObjct().insert(tempobject);
-        Toast.makeText(AddEmployeeActivity.this,"Added",Toast.LENGTH_SHORT).show();
 
+        Toast.makeText(AddEmployeeActivity.this,"Added obj",Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    public void showDialog(final Activity activity, String msg){
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.custom_dialog);
+
+        TextView text = (TextView) dialog.findViewById(R.id.dialogtext);
+        text.setText(msg);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.customButton);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
 
     }
 }

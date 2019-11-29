@@ -23,10 +23,16 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
     private List<Employee> myaaraylist;
 
 
-    public UserDataAdpater(Context context, List<Employee> myaaraylist) {
+    public UserDataAdpater(Context context) {
         this.context = context;
-        this.myaaraylist = myaaraylist;
+
     }
+
+    public void refresh()
+    {
+        notifyDataSetChanged();
+    }
+
 
     public Context getContext() {
         return context;
@@ -40,7 +46,7 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
         return myaaraylist;
     }
 
-    public void setMyaaraylist(ArrayList<Employee> myaaraylist) {
+    public void setMyaaraylist(List<Employee> myaaraylist) {
         this.myaaraylist = myaaraylist;
     }
 
@@ -53,7 +59,8 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
 
     @SuppressLint("ResourceAsColor")
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position)
+    {
 
     Employee mydata = myaaraylist.get(position);
 
@@ -85,10 +92,12 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
 
 
 
+
         holder.mycardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,"position = "+position,Toast.LENGTH_LONG).show();
+
             }
         });
 
