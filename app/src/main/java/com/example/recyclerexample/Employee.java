@@ -1,5 +1,8 @@
 package com.example.recyclerexample;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.Database;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -9,7 +12,7 @@ import androidx.room.RoomDatabase;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "employee")
-public class Employee  {
+public class Employee implements Parcelable {
 
 
     @SerializedName("id")
@@ -52,6 +55,31 @@ public class Employee  {
     }
 
 
+    protected Employee(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        name = in.readString();
+        if (in.readByte() == 0) {
+            age = null;
+        } else {
+            age = in.readInt();
+        }
+    }
+
+    public static final Creator<Employee> CREATOR = new Creator<Employee>() {
+        @Override
+        public Employee createFromParcel(Parcel in) {
+            return new Employee(in);
+        }
+
+        @Override
+        public Employee[] newArray(int size) {
+            return new Employee[size];
+        }
+    };
 
     public Integer getId() {
         return id;
@@ -84,5 +112,19 @@ public class Employee  {
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeInt(id);
+        parcel.writeInt(age);
+
+    }
+
 
 }

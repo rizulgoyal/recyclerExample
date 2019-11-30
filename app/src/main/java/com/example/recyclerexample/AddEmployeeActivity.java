@@ -43,7 +43,7 @@ public class AddEmployeeActivity extends AppCompatActivity implements View.OnCli
 
         createEmployee();
         showDialog(AddEmployeeActivity.this,"Are you sure you want to submit?");
-        finish();
+
         //Intent myintent = new Intent(this,MainActivity.class);
         //startActivity(myintent);
 
@@ -65,17 +65,24 @@ public class AddEmployeeActivity extends AppCompatActivity implements View.OnCli
         String vtype = type.getText().toString();
 
 
-        Vehicle tempvehicle = new Vehicle("any",x+1,vmake,vplate,vmodel,true,vtype);
-        Employee tempobject = new Employee(empid,empname,empage,tempvehicle);
+        if (empname.equals(""))
+        {
+            showtextDialog(AddEmployeeActivity.this,"Please add Employee Name to complete the Employee Form");
+        }
+        else {
 
-        final UserDatabase uData = UserDatabase.getInstance(this);
-        //Gson gson = new Gson();
+
+            Vehicle tempvehicle = new Vehicle("any", x + 1, vmake, vplate, vmodel, true, vtype);
+            Employee tempobject = new Employee(empid, empname, empage, tempvehicle);
+
+            final UserDatabase uData = UserDatabase.getInstance(this);
+            //Gson gson = new Gson();
 
 
-        uData.daoObjct().insert(tempobject);
+            uData.daoObjct().insert(tempobject);
 
-        Toast.makeText(AddEmployeeActivity.this,"Added obj",Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(AddEmployeeActivity.this, "Added obj", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -92,7 +99,34 @@ public class AddEmployeeActivity extends AppCompatActivity implements View.OnCli
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 dialog.dismiss();
+                finish();
+            }
+        });
+
+        dialog.show();
+
+    }
+
+    public void showtextDialog(final Activity activity, String msg){
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.custom_dialog);
+
+        TextView text = (TextView) dialog.findViewById(R.id.dialogtext);
+        text.setText(msg);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.customButton);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                dialog.dismiss();
+
             }
         });
 

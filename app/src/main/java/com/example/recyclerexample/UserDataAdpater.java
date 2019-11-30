@@ -2,6 +2,7 @@ package com.example.recyclerexample;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 
 public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHolder> {
@@ -59,7 +62,7 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position)
     {
 
-    Employee mydata = myaaraylist.get(position);
+    final Employee mydata = myaaraylist.get(position);
 
     Vehicle myvehicle = mydata.getVehicle();
     holder.name.setText("Employee Name: "+mydata.getName());
@@ -93,6 +96,10 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
         holder.mycardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent myintent = new Intent(context,EmployeeDetailsActivity.class);
+                myintent.putExtra("empobject",mydata);
+                context.startActivity(myintent);
                 Toast.makeText(context,"position = "+position,Toast.LENGTH_LONG).show();
 
             }

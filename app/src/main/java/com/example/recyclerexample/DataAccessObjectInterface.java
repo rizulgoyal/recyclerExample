@@ -25,4 +25,7 @@ public interface DataAccessObjectInterface
     LiveData<List<Employee>> getUserDetails();
     @Query("Select count(id) from employee")
     Integer count();
+
+    @Query("Select * from employee")
+    List<Employee> getdefaultUserDetails();
 }

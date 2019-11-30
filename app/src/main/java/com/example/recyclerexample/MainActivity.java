@@ -27,13 +27,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView myrecycler;
     CardView mycardview;
-    ArrayList<UserData> myarraylist = new ArrayList<UserData>();
+    List<Employee> myarraylist = new ArrayList<>();
+
+
+    String temps;
 
     @SuppressLint("WrongThread")
     @Override
@@ -48,38 +54,45 @@ public class MainActivity extends AppCompatActivity {
 
         final UserDatabase uData = UserDatabase.getInstance(this);
        final Integer count = uData.daoObjct().count();
-        if(count != 0)
+        if(count == 0)
        {
-            uData.clearAllTables();
+            //uData.clearAllTables();
+
+           String temp1 = loadJSONFromAsset();
+           Gson gson = new Gson();
+
+           try {
+               JSONArray jsonarray = new JSONArray(temp1);
+
+               for(int i =0 ; i<=jsonarray.length();i++)
+               {
+
+                   temps = jsonarray.get(i).toString();
+                   Employee emp = gson.fromJson(temps,Employee.class);
+                   uData.daoObjct().insert(emp);
+
+               }
+           }catch (JSONException e)
+           {
+               e.printStackTrace();
+           }
+           //end of data from json
+
+           myarraylist = uData.daoObjct().getdefaultUserDetails();
         }
 
 
-        String temp1 = loadJSONFromAsset();
-        Gson gson = new Gson();
 
-        try {
-            JSONArray jsonarray = new JSONArray(temp1);
 
-            for(int i =0 ; i<=jsonarray.length();i++)
-            {
-
-                String temps = jsonarray.get(i).toString();
-                Employee emp = gson.fromJson(temps,Employee.class);
-                uData.daoObjct().insert(emp);
-
-            }
-        }catch (JSONException e)
-        {
-            e.printStackTrace();
-        }
-        //end of data from json
 
 
         final UserDataAdpater myadapter = new UserDataAdpater(this);
+        myadapter.setMyaaraylist(myarraylist);
 
         LinearLayoutManager mylinearlayout = new LinearLayoutManager(this);
         myrecycler.setLayoutManager(mylinearlayout);
         myrecycler.setAdapter(myadapter);
+
         uData.daoObjct().getUserDetails().observe(this, new Observer<List<Employee>>() {
             @Override
             public void onChanged(@Nullable List<Employee> employees) {
