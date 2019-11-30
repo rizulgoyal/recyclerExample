@@ -123,6 +123,7 @@ public class Employee implements Parcelable {
         parcel.writeString(name);
         parcel.writeInt(id);
         parcel.writeInt(age);
+        parcel.writeParcelable(vehicle,0);
 
     }
 

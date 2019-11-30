@@ -1,9 +1,12 @@
 package com.example.recyclerexample;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Vehicle {
+public class Vehicle implements Parcelable {
 
     @SerializedName("@class")
     @Expose
@@ -54,6 +57,33 @@ public class Vehicle {
         this.insurance = insurance;
         this.type = type;
     }
+
+    protected Vehicle(Parcel in) {
+        _class = in.readString();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        make = in.readString();
+        plate = in.readString();
+        model = in.readString();
+        byte tmpInsurance = in.readByte();
+        insurance = tmpInsurance == 0 ? null : tmpInsurance == 1;
+        type = in.readString();
+    }
+
+    public static final Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
+        @Override
+        public Vehicle createFromParcel(Parcel in) {
+            return new Vehicle(in);
+        }
+
+        @Override
+        public Vehicle[] newArray(int size) {
+            return new Vehicle[size];
+        }
+    };
 
     public String getClass_() {
         return _class;
@@ -111,4 +141,24 @@ public class Vehicle {
         this.type = type;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(_class);
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
+        parcel.writeString(make);
+        parcel.writeString(plate);
+        parcel.writeString(model);
+        parcel.writeByte((byte) (insurance == null ? 0 : insurance ? 1 : 2));
+        parcel.writeString(type);
+    }
 }

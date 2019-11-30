@@ -64,7 +64,7 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
 
     final Employee mydata = myaaraylist.get(position);
 
-    Vehicle myvehicle = mydata.getVehicle();
+    final Vehicle myvehicle = mydata.getVehicle();
     holder.name.setText("Employee Name: "+mydata.getName());
     holder.id.setText("Employee ID: "+mydata.getId().toString());
     holder.age.setText("Employee Age: "+mydata.getAge().toString()+" Years");
@@ -98,7 +98,7 @@ public class UserDataAdpater extends RecyclerView.Adapter<UserDataAdpater.ViewHo
             public void onClick(View view) {
 
                 Intent myintent = new Intent(context,EmployeeDetailsActivity.class);
-                myintent.putExtra("empobject",mydata);
+                myintent.putExtra("empobject",myvehicle);
                 context.startActivity(myintent);
                 Toast.makeText(context,"position = "+position,Toast.LENGTH_LONG).show();
 
